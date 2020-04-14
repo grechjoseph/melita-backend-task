@@ -1,0 +1,17 @@
+spring:
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+
+melita:
+  candidateId: 16098338
+  url: https://en9kzxc8qcj9q.x.pipedream.net
+  endpoints:
+    customer: customers
+
+---
+spring:
+  profiles: live
+
+melita:
+  url: https://selfcare-service.demo.melita.com/interview/backend/api/
