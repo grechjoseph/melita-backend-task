@@ -11,13 +11,13 @@ logging:
 
 melita:
   candidateId: 16098338
-  url: https://en9kzxc8qcj9q.x.pipedream.net
+  url: https://selfcare-service.demo.melita.com/interview/backend/api/
   endpoints:
     customer: customers
 
 ---
 spring:
-  profiles: live
+  profiles: stub
 
 melita:
-  url: https://selfcare-service.demo.melita.com/interview/backend/api/
+  url: https://en9kzxc8qcj9q.x.pipedream.net/
