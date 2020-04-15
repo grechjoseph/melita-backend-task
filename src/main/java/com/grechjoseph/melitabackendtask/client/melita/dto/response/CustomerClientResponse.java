@@ -1,6 +1,7 @@
 package com.grechjoseph.melitabackendtask.client.melita.dto.response;
 
 import com.grechjoseph.melitabackendtask.api.dto.ApiCustomer;
+import com.grechjoseph.melitabackendtask.client.melita.dto.CustomerClientResponseCode;
 import lombok.Data;
 
 /**
@@ -11,5 +12,5 @@ public class CustomerClientResponse {
 
     private final int sequenceId;
     private final ApiCustomer data;
-    private final String response;
+    private final CustomerClientResponseCode code;
 }

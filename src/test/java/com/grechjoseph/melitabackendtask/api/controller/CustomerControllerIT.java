@@ -4,7 +4,6 @@ import com.grechjoseph.melitabackendtask.api.dto.ApiCustomer;
 import com.grechjoseph.melitabackendtask.api.dto.ApiExtendedCustomer;
 import com.grechjoseph.melitabackendtask.client.melita.client.MelitaCustomerClient;
 import com.grechjoseph.melitabackendtask.client.melita.dto.CustomerClientIdsCollection;
-import com.grechjoseph.melitabackendtask.client.melita.dto.CustomerClientStatusType;
 import com.grechjoseph.melitabackendtask.client.melita.dto.response.CustomerClientListResponse;
 import com.grechjoseph.melitabackendtask.client.melita.dto.response.CustomerClientResponse;
 import com.grechjoseph.melitabackendtask.domain.data.Customer;
@@ -22,6 +21,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import static com.grechjoseph.melitabackendtask.client.melita.dto.CustomerClientResponseCode.SUCCESS;
 import static com.grechjoseph.melitabackendtask.domain.enums.CustomerStatus.ACTIVE;
 import static com.grechjoseph.melitabackendtask.domain.enums.CustomerType.REGULAR;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -38,7 +38,6 @@ public class CustomerControllerIT {
     public static final String CUSTOMER_SURNAME = "Of Stuff";
     public static final CustomerType CUSTOMER_TYPE = REGULAR;
     public static final CustomerStatus CUSTOMER_STATUS = ACTIVE;
-    public static final String SUCCESS = "SUCCESS";
     public static final int SEQUENCE_ID = 0;
     public static final String CUSTOMER_ID = UUID.randomUUID().toString();
 
@@ -95,7 +94,7 @@ public class CustomerControllerIT {
         customerClientIdsCollection.setCustomerIds(Set.copyOf(List.of(CUSTOMER_ID)));
         final CustomerClientListResponse customerClientListResponse = new CustomerClientListResponse(SEQUENCE_ID,
                 customerClientIdsCollection,
-                CustomerClientStatusType.SUCCESS);
+                SUCCESS);
 
         when(mockMelitaCustomerClient.createCustomer(modelMapper.map(apiCustomer, Customer.class))).thenReturn(customerClientResponse);
         when(mockMelitaCustomerClient.getCustomerById(CUSTOMER_ID)).thenReturn(customerClientResponse);
