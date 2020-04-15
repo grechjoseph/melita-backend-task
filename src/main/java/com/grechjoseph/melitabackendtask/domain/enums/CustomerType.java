@@ -6,6 +6,6 @@ package com.grechjoseph.melitabackendtask.domain.enums;
 public enum CustomerType {
 
     REGULAR,
-    IRREGULAR
+    BUSINESS
 
 }

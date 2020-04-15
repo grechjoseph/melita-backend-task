@@ -5,7 +5,6 @@ package com.grechjoseph.melitabackendtask.client.melita.dto;
  */
 public enum CustomerClientStatusType {
 
-    SUCCESS,
-    FAILED
+    SUCCESS, MISSING, BAD_INPUT, GENERIC_ERROR
 
 }

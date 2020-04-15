@@ -6,6 +6,7 @@ package com.grechjoseph.melitabackendtask.domain.enums;
 public enum CustomerStatus {
 
     ACTIVE,
-    INACTIVE
+    SUSPENDED,
+    CEASED
 
 }
