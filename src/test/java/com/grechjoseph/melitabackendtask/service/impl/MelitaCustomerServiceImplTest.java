@@ -12,16 +12,11 @@ import com.grechjoseph.melitabackendtask.domain.enums.CustomerType;
 import com.grechjoseph.melitabackendtask.domain.exception.BaseException;
 import com.grechjoseph.melitabackendtask.mapping.ModelMapper;
 import com.grechjoseph.melitabackendtask.utils.CustomFeignException;
-import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.event.annotation.BeforeTestClass;
-import org.springframework.test.context.event.annotation.BeforeTestExecution;
 
 import java.util.List;
 import java.util.Set;
@@ -36,6 +31,9 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
+/**
+ * Unit Tests for {@link MelitaCustomerServiceImpl}.
+ */
 @SpringBootTest
 public class MelitaCustomerServiceImplTest {
 

@@ -25,10 +25,12 @@ import java.util.UUID;
 import static com.grechjoseph.melitabackendtask.domain.enums.CustomerStatus.ACTIVE;
 import static com.grechjoseph.melitabackendtask.domain.enums.CustomerType.REGULAR;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * Integration Tests for {@link CustomerController}.
+ */
 @SpringBootTest
 public class CustomerControllerIT {
 
