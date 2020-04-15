@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.UUID;
-
 /**
  * Feign Client responsible of interacting with the Melita endpoints.
  */
@@ -31,7 +29,7 @@ public interface MelitaCustomerClient {
      * @return {@link CustomerClientResponse} object with the retrieved (if any) Customer object.
      */
     @GetMapping("${melita.endpoints.customer}/{id}")
-    CustomerClientResponse getCustomerById(@PathVariable("id") final UUID id);
+    CustomerClientResponse getCustomerById(@PathVariable("id") final String id);
 
     /**
      * Get a list of all customer IDs at Melita.

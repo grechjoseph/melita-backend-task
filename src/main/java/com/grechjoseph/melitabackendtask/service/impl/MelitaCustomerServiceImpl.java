@@ -8,10 +8,11 @@ import com.grechjoseph.melitabackendtask.service.CustomerService;
 import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 import static com.grechjoseph.melitabackendtask.domain.exception.ErrorCode.CUSTOMER_FIND_BY_ID_NOT_FOUND;
@@ -34,8 +35,10 @@ public class MelitaCustomerServiceImpl implements CustomerService {
      * @param customer The {@link Customer} to create.
      * @return The created {@link Customer}.
      */
+    @CacheEvict(value = "customer-cache", allEntries = true)
     @Override
     public Customer createCustomer(final Customer customer) {
+        log.debug("Creating Customer.");
         return mapper.map(melitaCustomerClient.createCustomer(customer).getData(), Customer.class);
     }
 
@@ -44,8 +47,10 @@ public class MelitaCustomerServiceImpl implements CustomerService {
      * @param customerId The ID by which to query.
      * @return The retrieved {@link Customer}.
      */
+    @Cacheable(value = "customer-cache", key = "'Customer' + #customerId")
     @Override
-    public Customer getCustomerById(final UUID customerId) {
+    public Customer getCustomerById(final String customerId) {
+        log.debug("Retrieving Customer by ID '{}'.", customerId);
         try {
             Customer customer = mapper.map(melitaCustomerClient.getCustomerById(customerId).getData(), Customer.class);
             customer.setId(customerId);
@@ -61,8 +66,10 @@ public class MelitaCustomerServiceImpl implements CustomerService {
      * Retrieve all {@link Customer} objects.
      * @return {@link Set} of {@link Customer} objects retrieved.
      */
+    @Cacheable(value = "customer-cache")
     @Override
     public Set<Customer> getAllCustomers() {
+        log.debug("Retrieving all Customers.");
         return getAllCustomerIds().stream()
                 .map(this::getCustomerById)
                 .collect(Collectors.toSet());
@@ -72,7 +79,8 @@ public class MelitaCustomerServiceImpl implements CustomerService {
      * Retrieve all Customer IDs.
      * @return {@link Set} of Customer IDs.
      */
-    private Set<UUID> getAllCustomerIds() {
+    private Set<String> getAllCustomerIds() {
+        log.debug("Fetching all Customer IDs.");
         return melitaCustomerClient.getCustomers().getData().getCustomerIds();
     }
 

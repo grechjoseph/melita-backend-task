@@ -4,15 +4,16 @@ import com.grechjoseph.melitabackendtask.domain.enums.CustomerStatus;
 import com.grechjoseph.melitabackendtask.domain.enums.CustomerType;
 import lombok.Data;
 
-import java.util.UUID;
-
 /**
  * Represents a Customer object.
  */
 @Data
 public class Customer {
 
-    private UUID id = UUID.randomUUID();
+    /**
+     * ID has not been specified its type. Values appear to be UUIDs, but left the implementation as String.
+     */
+    private String id;
     private String name;
     private String surname;
     private CustomerType type;

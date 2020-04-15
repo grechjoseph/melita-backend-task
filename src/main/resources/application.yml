@@ -3,6 +3,12 @@ spring:
     serialization:
       FAIL_ON_EMPTY_BEANS: false
 
+logging:
+  level:
+    com:
+      grechjoseph:
+        melitabackendtask: DEBUG
+
 melita:
   candidateId: 16098338
   url: https://en9kzxc8qcj9q.x.pipedream.net

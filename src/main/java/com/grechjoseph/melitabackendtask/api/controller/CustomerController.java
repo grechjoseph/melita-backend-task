@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * REST Controller for managing the Customer entities.
@@ -19,6 +18,7 @@ import java.util.UUID;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/customers")
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -29,8 +29,10 @@ public class CustomerController {
      * @param apiCustomer {@link ApiCustomer} object to create.
      * @return The created {@link ApiCustomer} object.
      */
-    @PutMapping("/customers")
+    @PutMapping()
     public ApiCustomer createCustomer(@RequestBody @Valid final ApiCustomer apiCustomer) {
+        log.info("Creating Customer with [Name = {}, Surname = {}, Type = {}, Status = {}].",
+                apiCustomer.getName(), apiCustomer.getSurname(), apiCustomer.getType(), apiCustomer.getStatus());
         return mapper.map(
                 customerService.createCustomer(mapper.map(apiCustomer, Customer.class)),
                 ApiCustomer.class);
@@ -41,8 +43,9 @@ public class CustomerController {
      * @param customerId The ID by which to query.
      * @return The {@link ApiCustomer} object retrieved.
      */
-    @GetMapping("/customers/{customerId}")
-    public ApiCustomer getCustomerById(@PathVariable final UUID customerId) {
+    @GetMapping("/{customerId}")
+    public ApiCustomer getCustomerById(@PathVariable final String customerId) {
+        log.info("Retrieving Customer with ID = {}.", customerId);
         return mapper.map(customerService.getCustomerById(customerId), ApiCustomer.class);
     }
 
@@ -50,8 +53,9 @@ public class CustomerController {
      * Get All {@link ApiCustomer} instances.
      * @return A {@link List} of {@link ApiCustomer} objects.
      */
-    @GetMapping("/customers")
+    @GetMapping()
     public List<ApiExtendedCustomer> getAllCustomers() {
+        log.info("Retrieving all Customers.");
         return mapper.mapAsList(customerService.getAllCustomers(), ApiExtendedCustomer.class);
     }
 
