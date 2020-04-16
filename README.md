@@ -9,6 +9,9 @@ This task is a basic system for adding and retrieval of Customer data from a Mel
 1. Retrieving a list of the IDs of all existing Customers.
 2. Retrieving a Customer object by its ID.
 
+<h3>API Documentation</h3>
+- http://localhost:8080/swagger-ui.html
+
 <h3>Some Technologies Used</h3>
 <ul>
     <li>Java</li>

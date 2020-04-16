@@ -1,16 +1,15 @@
 package com.grechjoseph.melitabackendtask.domain.exception;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 /**
  * The {@link RuntimeException} to handle errors within the system.
  */
 @Data
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class BaseException extends RuntimeException {
 
     private final ErrorCode errorCode;
-    private final String id;
 
 }

@@ -15,8 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.grechjoseph.melitabackendtask.domain.exception.ErrorCode.CUSTOMER_FIND_BY_ID_NOT_FOUND;
-import static com.grechjoseph.melitabackendtask.domain.exception.ErrorCode.CUSTOMER_FIND_BY_ID_UNKNOWN;
+import static com.grechjoseph.melitabackendtask.domain.exception.ErrorCode.*;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 /**
@@ -56,9 +55,8 @@ public class MelitaCustomerServiceImpl implements CustomerService {
             customer.setId(customerId);
             return customer;
         } catch (final FeignException ex) {
-            throw new BaseException(
-                    ex.status() == NOT_FOUND.value() ? CUSTOMER_FIND_BY_ID_NOT_FOUND : CUSTOMER_FIND_BY_ID_UNKNOWN,
-                    customerId);
+            throw new BaseException(ex.status() == NOT_FOUND.value() ?
+                    CUSTOMER_FIND_BY_ID_NOT_FOUND : CUSTOMER_FIND_BY_ID_UNKNOWN);
         }
     }
 
@@ -81,7 +79,11 @@ public class MelitaCustomerServiceImpl implements CustomerService {
      */
     private Set<String> getAllCustomerIds() {
         log.debug("Fetching all Customer IDs.");
-        return melitaCustomerClient.getCustomers().getData().getCustomerIds();
+        try {
+            return melitaCustomerClient.getCustomers().getData().getCustomerIds();
+        } catch (final FeignException ex) {
+            throw new BaseException(FEIGN_CLIENT_UNREACHABLE);
+        }
     }
 
 }

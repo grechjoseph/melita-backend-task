@@ -7,6 +7,7 @@ package com.grechjoseph.melitabackendtask.domain.exception;
 public enum ErrorCode {
 
     CUSTOMER_FIND_BY_ID_NOT_FOUND,
-    CUSTOMER_FIND_BY_ID_UNKNOWN
+    CUSTOMER_FIND_BY_ID_UNKNOWN,
+    FEIGN_CLIENT_UNREACHABLE
 
 }
