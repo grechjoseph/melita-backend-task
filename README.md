@@ -10,7 +10,7 @@ This task is a basic system for adding and retrieval of Customer data from a Mel
 2. Retrieving a Customer object by its ID.
 
 <h3>API Documentation</h3>
-- http://localhost:8080/swagger-ui.html
+- Swagger API Documentation is available <a href='http://localhost:8080/swagger-ui.html'>here</a>.
 
 <h3>Some Technologies Used</h3>
 <ul>
