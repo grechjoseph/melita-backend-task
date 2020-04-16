@@ -19,7 +19,6 @@ This task is a basic system for adding and retrieval of Customer data from a Mel
     <li>Spring Test</li>
     <li>Orika</li>
     <li>Open Feign</li>
-    <li>Swagger</li>
 </ul>
 
 <h3>Running the project</h3>
