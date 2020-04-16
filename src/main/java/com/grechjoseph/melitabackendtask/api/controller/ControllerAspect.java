@@ -27,7 +27,7 @@ public class ControllerAspect {
                 .map(arg -> "arg " + arg + " - ")
                 .collect(Collectors.joining());
 
-        log.debug("called {} method of class {} with parameters {}", methodName, className, parameters);
+        log.debug("Called {} method of class {} with parameters {}", methodName, className, parameters);
     }
 
     @AfterReturning(pointcut = "anyController()", returning = "returnValue")
